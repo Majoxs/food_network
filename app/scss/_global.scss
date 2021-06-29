@@ -1,12 +1,26 @@
 body {
    @extend %text-font;
    font-size: 16px;
+   line-height: 24px;
    color: $black;
 }
 .container {
    max-width: 1160px;
    margin: 0 auto;
    padding: 0 10px;
+}
+.subtitle {
+   @extend %text-font;
+   font-weight: 500;
+   color: rgba($primary, 0.7);
+   text-transform: uppercase;
+   letter-spacing: 2px;
+}
+.title {
+   @extend %title-font;
+   font-size: 31px;
+   line-height: 35px;
+   text-transform: capitalize;
 }
 .btn {
    background-color: $primary;
