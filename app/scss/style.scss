@@ -131,6 +131,51 @@
 }
 
 //End Features block
+//Start About block
+
+.about {
+   padding-top: 120px;
+   &__inner {
+      display: flex;
+      align-items: center;
+   }
+
+   &__img {
+      flex: 0 0 555px;
+      margin-right: 97px;
+      img {
+         width: 100%;
+         height: 500px;
+         border-radius: 35px;
+      }
+   }
+
+   &__content {
+      flex: 0 0 475px;
+   }
+
+   &__subtitle {
+      margin-bottom: 10px;
+   }
+
+   &__title {
+      margin-bottom: 30px;
+      text-transform: none;
+   }
+
+   &__text {
+      margin-bottom: 30px;
+   }
+
+   &__btn {
+      display: inline-block;
+      font-size: 16px;
+      line-height: 18px;
+      font-weight: 500;
+   }
+}
+
+//End About block
 
 // &__list-link {
 //    @extend %title-font;
