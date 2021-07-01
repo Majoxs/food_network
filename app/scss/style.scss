@@ -180,7 +180,6 @@
 
 .foodmenu {
    padding-top: 120px;
-   padding-bottom: 50px;
    &__subtitle {
       text-align: center;
       line-height: 24px;
@@ -297,6 +296,109 @@
 }
 
 //End Food-menu block
+//Start Application block
+
+.application {
+   padding-top: 180px;
+   padding-bottom: 100px;
+   &__wrapper {
+      background-color: rgba(#fbf1e7, 0.4);
+      padding-top: 114px;
+      padding-bottom: 129px;
+   }
+   &__info {
+      margin-left: 97px;
+      max-width: 555px;
+      position: relative;
+      &::before {
+         content: "";
+         position: absolute;
+         background-image: url("../images/application.png");
+         background-size: contain;
+         width: 380px;
+         height: 730px;
+         right: -400px;
+         top: -200px;
+         z-index: 1;
+      }
+   }
+
+   &__subtitle {
+      margin-bottom: 5px;
+   }
+   &__title {
+      text-transform: none;
+      line-height: 41px;
+      margin-bottom: 30px;
+   }
+
+   &__text {
+      opacity: 0.7;
+      margin-bottom: 40px;
+   }
+
+   &__btn-appStore {
+      background-color: $black;
+      color: #fff;
+      padding: 12px 29px;
+      border-radius: 5px;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-right: 30px;
+      span {
+         padding-left: 34px;
+         display: inline-block;
+         position: relative;
+         &::after {
+            content: "";
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background-image: url("../images/apple.svg");
+            background-size: cover;
+            left: -2px;
+            top: -2px;
+         }
+      }
+      &:active {
+         transform: translateY(1px);
+         filter: saturate(150%);
+      }
+   }
+
+   &__btn-googlePlay {
+      background-color: transparent;
+      color: $black;
+      padding: 12px 29px;
+      border-radius: 5px;
+      border: 1.5px solid rgba($black, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      span {
+         padding-left: 34px;
+         font-weight: 500;
+         display: inline-block;
+         position: relative;
+         &::after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 26px;
+            background-image: url("../images/google.svg");
+            background-size: cover;
+            left: -2px;
+            top: -2px;
+         }
+      }
+      &:active {
+         transform: translateY(1px);
+         filter: saturate(150%);
+      }
+   }
+}
+
+//End Application block
 
 // &__list-link {
 //    @extend %title-font;
