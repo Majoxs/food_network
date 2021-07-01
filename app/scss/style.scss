@@ -399,9 +399,93 @@
 }
 
 //End Application block
+//Start Testimonial block
 
-// &__list-link {
-//    @extend %title-font;
-//    color: rgba(54, 56, 56, 0.9);
-//    line-height: 22px;
-// }
+.testimonial {
+   padding-top: 100px;
+   padding-bottom: 100px;
+   &__subtitle {
+      text-align: center;
+      margin-bottom: 10px;
+   }
+   &__title {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      text-transform: none;
+      margin-bottom: 20px;
+   }
+   &__text {
+      text-align: center;
+      max-width: 750px;
+      opacity: 0.7;
+      margin: 0 auto;
+      margin-bottom: 70px;
+   }
+
+   &__slider {
+      max-width: 800px;
+      margin: 0 auto;
+   }
+
+   &__slider-items {
+      text-align: center;
+   }
+
+   &__slider-item {
+      margin: 0 auto;
+      max-width: 506px;
+      color: #000;
+   }
+
+   &__slider-img {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      img {
+         border-radius: 50%;
+         object-fit: cover;
+      }
+   }
+   &__slider-text {
+      margin-bottom: 20px;
+   }
+
+   &__slider-rating {
+      margin-bottom: 26px;
+   }
+
+   &__slider-autor {
+      text-transform: uppercase;
+      margin-bottom: 5px;
+   }
+
+   &__slider-position {
+      font-size: 12px;
+      line-height: 14px;
+      text-transform: uppercase;
+      opacity: 0.7;
+   }
+}
+
+.slick-arrow {
+   position: absolute;
+   left: 0px;
+   top: 50%;
+   transform: translateY(-50%);
+   z-index: 5;
+   cursor: pointer;
+   path {
+      transition: stroke 0.5s;
+   }
+   &:hover path {
+      stroke: $primary;
+   }
+}
+.slick-right {
+   left: 800px;
+}
+
+//End Testimonial block
