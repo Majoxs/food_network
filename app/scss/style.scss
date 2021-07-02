@@ -143,6 +143,19 @@
    &__img {
       flex: 0 0 555px;
       margin-right: 97px;
+      position: relative;
+      &::after {
+         content: "";
+         position: absolute;
+         background-image: url("../images/about-bg.png");
+         background-size: cover;
+         background-repeat: no-repeat;
+         top: -260px;
+         left: -160px;
+         width: 607px;
+         height: 1200px;
+         z-index: -1;
+      }
       img {
          width: 100%;
          height: 500px;
@@ -541,3 +554,71 @@
 }
 
 //End Contact block
+//Start Footer block
+
+.footer {
+   background-color: $black;
+   padding: 110px 0;
+   &__items {
+      color: rgba(#fff, 0.7);
+      font-size: 14px;
+      line-height: 17px;
+      display: flex;
+   }
+
+   &__item {
+      flex: 0 0 262px;
+   }
+
+   &__item-logo {
+      width: 61px;
+      height: 60px;
+      margin-bottom: 25px;
+      img {
+         object-fit: cover;
+      }
+   }
+
+   &__item-website {
+      margin-bottom: 17px;
+   }
+
+   &__item-mail {
+      margin-bottom: 17px;
+   }
+
+   &__item-phone {
+      margin-bottom: 17px;
+   }
+
+   &__item-title {
+      @extend %title-font;
+      font-size: 18px;
+      line-height: 20px;
+      color: #fff;
+      margin-bottom: 26px;
+   }
+
+   &__item-list {
+   }
+
+   &__item-link {
+      margin-bottom: 20px;
+      transition: color 0.5s ease;
+      &:hover {
+         color: $primary;
+      }
+   }
+
+   &__item-social {
+   }
+}
+
+.social {
+   display: flex;
+   li {
+      margin-right: 10px;
+   }
+}
+
+//End Footer block
