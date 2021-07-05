@@ -15,9 +15,6 @@
       margin-right: 35px;
    }
 
-   &__menu-list {
-   }
-
    &__menu-item {
       display: inline-block;
    }
@@ -270,8 +267,6 @@
 }
 
 .box {
-   &__item {
-   }
 
    &__item-info {
       display: flex;
@@ -580,6 +575,7 @@
    }
 
    &__item-website {
+      display: block;
       margin-bottom: 17px;
    }
 
@@ -599,18 +595,12 @@
       margin-bottom: 26px;
    }
 
-   &__item-list {
-   }
-
    &__item-link {
       margin-bottom: 20px;
       transition: color 0.5s ease;
       &:hover {
          color: $primary;
       }
-   }
-
-   &__item-social {
    }
 }
 
