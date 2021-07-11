@@ -14,30 +14,39 @@
 
 <body>
 
-   <header class="header">
+   <header id="header" class="header">
       <div class="container">
-         <nav class="header__menu">
-            <img class="header__menu-logo" src="images/logo.png" alt="logo">
-            <ul class="header__menu-list">
-               <li class="header__menu-item">
-                  <a class="header__menu-link" href="#">Home</a>
-               </li>
-               <li class="header__menu-item">
-                  <a class="header__menu-link" href="#">About us</a>
-               </li>
-               <li class="header__menu-item">
-                  <a class="header__menu-link" href="#">Menu</a>
-               </li>
-               <li class="header__menu-item">
-                  <a class="header__menu-link" href="#">Features</a>
-               </li>
-               <li class="header__menu-item">
-                  <a class="header__menu-link" href="#">Contact us</a>
-               </li>
-            </ul>
+         <div class="header__container">
+            <a href="#" class="header__logo">
+               <img class="header__menu-logo" src="images/logo.png" alt="logo">
+            </a>
+            <div class="header__menu menu">
+               <div class="menu__icon">
+                  <span></span>
+               </div>
+               <nav class="menu__body">
+                  <ul class="menu__list">
+                     <li>
+                        <a href="#header" class="menu__link">Home</a>
+                     </li>
+                     <li>
+                        <a href="#about" class="menu__link">About us</a>
+                     </li>
+                     <li>
+                        <a href="#foodmenu" class="menu__link">Menu</a>
+                     </li>
+                     <li>
+                        <a href="#features" class="menu__link">Features</a>
+                     </li>
+                     <li>
+                        <a href="#contact" class="menu__link">Contact us</a>
+                     </li>
+                  </ul>
+               </nav>
+            </div>
             <a class="header__btn btn" href="#">Booking Now</a>
-         </nav>
-         <div class="header__content" style="background-image: url(images/header-img.png)">
+         </div>
+         <div class="header__content">
             <h1 class="header__content-title">Making time a good time by making food the good food.</h1>
             <p class="header__content-text">
                There are many things are needed to start the Fast Food Business. You need not only Just Food Stalls
@@ -50,7 +59,7 @@
       </div>
    </header>
 
-   <section class="features">
+   <!-- <section id="features" class="features">
       <div class="container">
          <div class="features__subtitle subtitle">Features</div>
          <h2 class="features__title title">Food with a New Passion</h2>
@@ -86,7 +95,7 @@
       </div>
    </section>
 
-   <section class="about">
+   <section id="about" class="about">
       <div class="container">
          <about class="about__inner">
             <div class="about__img">
@@ -109,7 +118,7 @@
       </div>
    </section>
 
-   <section class="foodmenu">
+   <section id="foodmenu" class="foodmenu">
       <div class="container">
          <div class="foodmenu__subtitle subtitle">Menu</div>
          <h2 class="foodmenu__title title">
@@ -389,7 +398,7 @@
       </div>
    </section>
 
-   <section class="contact">
+   <section id="contact" class="contact">
       <div class="contact__wrapper">
          <div class="container">
             <div class="contact__subtitle subtitle">Contact</div>
@@ -408,7 +417,9 @@
       <div class="container">
          <div class="footer__items">
             <div class="footer__item">
-               <img class="footer__item-logo" src="images/logo.png" alt="icon: logo">
+               <a href="#header">
+                  <img class="footer__item-logo" src="images/logo.png" alt="icon: logo">
+               </a>
                <a class="footer__item-website" href="https:www.google.com">www.google.com</a>
                <a class="footer__item-mail" href="mailto:companyname@gmail.com">companyname@gmail.com</a>
                <a class="footer__item-phone" href="tel:+74851180325">Phone: +7 485-118-03-25</a>
@@ -451,7 +462,7 @@
             </div>
          </div>
       </div>
-   </footer>
+   </footer> -->
 
 </body>
 

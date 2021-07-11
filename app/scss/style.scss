@@ -3,35 +3,28 @@
 @import "reset";
 
 //Start Header block
+.menu__list > li {
+   margin: 0px 0px 0px 40px;
+}
+.menu__link {
+   font-size: 16px;
+   color: rgba($black, 0.6);
+   transition: color 0.5s ease;
+   &:hover {
+      color: rgba($primary, 1);
+   }
+}
+.menu__icon {
+   display: none;
+}
 
 .header {
-   padding-top: 30px;
-   &__menu {
+   // padding-top: 30px;
+   &__container {
+      padding-top: 30px;
       display: flex;
       align-items: center;
-   }
-
-   &__menu-logo {
-      margin-right: 35px;
-   }
-
-   &__menu-list {
-   }
-
-   &__menu-item {
-      display: inline-block;
-   }
-   &__menu-item + .header__menu-item {
-      margin-left: 40px;
-   }
-
-   &__menu-link {
-      font-size: 16px;
-      color: rgba($black, 0.6);
-      transition: all 0.5s ease;
-      &:hover {
-         color: rgba($primary, 1);
-      }
+      min-height: 46px;
    }
 
    &__btn {
@@ -40,7 +33,7 @@
 
    &__content {
       padding: 160px 0 107px 0;
-
+      background-image: url("../images/header-img.png");
       background-repeat: no-repeat;
       background-position: 500px -30px;
       background-size: contain;
@@ -270,9 +263,6 @@
 }
 
 .box {
-   &__item {
-   }
-
    &__item-info {
       display: flex;
       justify-content: space-between;
@@ -580,6 +570,7 @@
    }
 
    &__item-website {
+      display: block;
       margin-bottom: 17px;
    }
 
@@ -599,18 +590,12 @@
       margin-bottom: 26px;
    }
 
-   &__item-list {
-   }
-
    &__item-link {
       margin-bottom: 20px;
       transition: color 0.5s ease;
       &:hover {
          color: $primary;
       }
-   }
-
-   &__item-social {
    }
 }
 
@@ -622,3 +607,5 @@
 }
 
 //End Footer block
+
+@import "media";
