@@ -186,21 +186,19 @@
 
 .foodmenu {
    padding-top: 120px;
+   text-align: center;
    &__subtitle {
-      text-align: center;
       line-height: 24px;
       margin-bottom: 10px;
    }
 
    &__title {
       text-transform: none;
-      text-align: center;
       margin-bottom: 25px;
    }
 
    &__text {
       max-width: 748px;
-      text-align: center;
       margin: 0 auto;
       opacity: 0.7;
       margin-bottom: 60px;
@@ -232,11 +230,6 @@
 
    &__item-box {
       padding: 25px;
-   }
-
-   &__btn {
-      margin: 0 auto;
-      margin-top: 20px;
    }
 }
 .rating {
@@ -317,6 +310,7 @@
          content: "";
          position: absolute;
          background-image: url("../images/application.png");
+         background-repeat: no-repeat;
          background-size: contain;
          width: 380px;
          height: 730px;
@@ -362,6 +356,7 @@
             background-size: cover;
             left: -2px;
             top: -2px;
+            z-index: 4;
          }
       }
       &:active {
@@ -392,6 +387,7 @@
             background-size: cover;
             left: -2px;
             top: -2px;
+            z-index: 4;
          }
       }
       &:active {
@@ -554,10 +550,8 @@
       font-size: 14px;
       line-height: 17px;
       display: flex;
-   }
-
-   &__item {
-      flex: 0 0 262px;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
    }
 
    &__item-logo {
@@ -576,10 +570,12 @@
 
    &__item-mail {
       margin-bottom: 17px;
+      display: block;
    }
 
    &__item-phone {
       margin-bottom: 17px;
+      display: block;
    }
 
    &__item-title {

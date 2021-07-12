@@ -1,3 +1,161 @@
+// DynamicAdapt
+
+"use strict";
+
+function DynamicAdapt(type) {
+   this.type = type;
+}
+
+DynamicAdapt.prototype.init = function () {
+   const _this = this;
+   // массив объектов
+   this.оbjects = [];
+   this.daClassname = "_dynamic_adapt_";
+   // массив DOM-элементов
+   this.nodes = document.querySelectorAll("[data-da]");
+
+   // наполнение оbjects объктами
+   for (let i = 0; i < this.nodes.length; i++) {
+      const node = this.nodes[i];
+      const data = node.dataset.da.trim();
+      const dataArray = data.split(",");
+      const оbject = {};
+      оbject.element = node;
+      оbject.parent = node.parentNode;
+      оbject.destination = document.querySelector(dataArray[0].trim());
+      оbject.breakpoint = dataArray[1] ? dataArray[1].trim() : "767";
+      оbject.place = dataArray[2] ? dataArray[2].trim() : "last";
+      оbject.index = this.indexInParent(оbject.parent, оbject.element);
+      this.оbjects.push(оbject);
+   }
+
+   this.arraySort(this.оbjects);
+
+   // массив уникальных медиа-запросов
+   this.mediaQueries = Array.prototype.map.call(this.оbjects, function (item) {
+      return '(' + this.type + "-width: " + item.breakpoint + "px)," + item.breakpoint;
+   }, this);
+   this.mediaQueries = Array.prototype.filter.call(this.mediaQueries, function (item, index, self) {
+      return Array.prototype.indexOf.call(self, item) === index;
+   });
+
+   // навешивание слушателя на медиа-запрос
+   // и вызов обработчика при первом запуске
+   for (let i = 0; i < this.mediaQueries.length; i++) {
+      const media = this.mediaQueries[i];
+      const mediaSplit = String.prototype.split.call(media, ',');
+      const matchMedia = window.matchMedia(mediaSplit[0]);
+      const mediaBreakpoint = mediaSplit[1];
+
+      // массив объектов с подходящим брейкпоинтом
+      const оbjectsFilter = Array.prototype.filter.call(this.оbjects, function (item) {
+         return item.breakpoint === mediaBreakpoint;
+      });
+      matchMedia.addListener(function () {
+         _this.mediaHandler(matchMedia, оbjectsFilter);
+      });
+      this.mediaHandler(matchMedia, оbjectsFilter);
+   }
+};
+
+DynamicAdapt.prototype.mediaHandler = function (matchMedia, оbjects) {
+   if (matchMedia.matches) {
+      for (let i = 0; i < оbjects.length; i++) {
+         const оbject = оbjects[i];
+         оbject.index = this.indexInParent(оbject.parent, оbject.element);
+         this.moveTo(оbject.place, оbject.element, оbject.destination);
+      }
+   } else {
+      for (let i = 0; i < оbjects.length; i++) {
+         const оbject = оbjects[i];
+         if (оbject.element.classList.contains(this.daClassname)) {
+            this.moveBack(оbject.parent, оbject.element, оbject.index);
+         }
+      }
+   }
+};
+
+// Функция перемещения
+DynamicAdapt.prototype.moveTo = function (place, element, destination) {
+   element.classList.add(this.daClassname);
+   if (place === 'last' || place >= destination.children.length) {
+      destination.insertAdjacentElement('beforeend', element);
+      return;
+   }
+   if (place === 'first') {
+      destination.insertAdjacentElement('afterbegin', element);
+      return;
+   }
+   destination.children[place].insertAdjacentElement('beforebegin', element);
+}
+
+// Функция возврата
+DynamicAdapt.prototype.moveBack = function (parent, element, index) {
+   element.classList.remove(this.daClassname);
+   if (parent.children[index] !== undefined) {
+      parent.children[index].insertAdjacentElement('beforebegin', element);
+   } else {
+      parent.insertAdjacentElement('beforeend', element);
+   }
+}
+
+// Функция получения индекса внутри родителя
+DynamicAdapt.prototype.indexInParent = function (parent, element) {
+   const array = Array.prototype.slice.call(parent.children);
+   return Array.prototype.indexOf.call(array, element);
+};
+
+// Функция сортировки массива по breakpoint и place 
+// по возрастанию для this.type = min
+// по убыванию для this.type = max
+DynamicAdapt.prototype.arraySort = function (arr) {
+   if (this.type === "min") {
+      Array.prototype.sort.call(arr, function (a, b) {
+         if (a.breakpoint === b.breakpoint) {
+            if (a.place === b.place) {
+               return 0;
+            }
+
+            if (a.place === "first" || b.place === "last") {
+               return -1;
+            }
+
+            if (a.place === "last" || b.place === "first") {
+               return 1;
+            }
+
+            return a.place - b.place;
+         }
+
+         return a.breakpoint - b.breakpoint;
+      });
+   } else {
+      Array.prototype.sort.call(arr, function (a, b) {
+         if (a.breakpoint === b.breakpoint) {
+            if (a.place === b.place) {
+               return 0;
+            }
+
+            if (a.place === "first" || b.place === "last") {
+               return 1;
+            }
+
+            if (a.place === "last" || b.place === "first") {
+               return -1;
+            }
+
+            return b.place - a.place;
+         }
+
+         return b.breakpoint - a.breakpoint;
+      });
+      return;
+   }
+};
+
+const da = new DynamicAdapt("max");
+da.init();
+
 // Menu
 
 const iconMenu = document.querySelector('.menu__icon');
@@ -9,8 +167,6 @@ if (iconMenu) {
       menuBody.classList.toggle('_active');
    });
 }
-
-
 
 //Smooth scrolling
 
@@ -24,8 +180,8 @@ for (let anchor of anchors) {
 
       if (iconMenu.classList.contains('_active')) {
          document.body.classList.remove('_lock');
-         iconMenu.classList.remove('_active')
-         menuBody.classList.remove('_active')
+         iconMenu.classList.remove('_active');
+         menuBody.classList.remove('_active');
       }
 
       document.getElementById(blockId).scrollIntoView({
@@ -33,25 +189,9 @@ for (let anchor of anchors) {
          block: 'start',
       })
 
-
    })
 }
 
-
-const anchors = document.querySelectorAll('a[href*="#"]');
-
-for (let anchor of anchors) {
-   anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      const blockId = anchor.getAttribute('href').substr(1);
-
-      document.getElementById(blockId).scrollIntoView({
-         behavior: 'smooth',
-         block: 'start',
-      })
-   })
-}
 //Star rating
 
 const ratingItemsList = document.querySelectorAll('.rating__item');
@@ -69,4 +209,13 @@ ratingItemsArray.forEach(item =>
 $('.testimonial__slider-items').slick({
    prevArrow: '<svg class="slick-left" width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 14L2 8L8 2" stroke="#150C01" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>',
    nextArrow: '<svg class="slick-right" width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2L8 8L2 14" stroke="#150C01" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" /></svg>',
+   responsive: [
+      {
+         breakpoint: 412,
+         settings: {
+            dots: true,
+            arrows: false
+         }
+      }
+   ]
 });
